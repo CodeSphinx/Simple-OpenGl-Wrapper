@@ -10,15 +10,13 @@ protected:
 	GLuint _objectId;
 
 public:
-	GLobject(void) {};
-	virtual ~GLobject() = 0 {};
+	GLobject(void);
+	virtual ~GLobject() = 0;
 
-	virtual void bind(void) const {};
-	virtual void unbind(void) const {};
+	virtual void bind(void) const;
+	virtual void unbind(void) constt;
 
-	GLuint getId(void) const {
-		return _objectId;
-	}
+	GLuint getId(void) const;
 };
 
 #endif
