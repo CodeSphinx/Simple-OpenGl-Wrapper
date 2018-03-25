@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //Ignored on Linux/OSX
 #ifndef GL_OBJECT_H
 #define GL_OBJECT_H
 
