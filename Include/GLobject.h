@@ -14,7 +14,7 @@ public:
 	virtual ~GLobject() = 0;
 
 	virtual void bind(void) const;
-	virtual void unbind(void) constt;
+	virtual void unbind(void) const;
 
 	GLuint getId(void) const;
 };
