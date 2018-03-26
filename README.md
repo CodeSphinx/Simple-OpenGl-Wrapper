@@ -7,4 +7,4 @@ At the moment, all code is provided in the corresponding header file for simplic
 
 
 # Disclaimer
-I am still in the opengl learning process, so expect stuff to not work if you are feeling risky and want to use this.
+I am still in process of learning OpenGL, so expect stuff to not work.
