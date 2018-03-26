@@ -33,4 +33,9 @@ public:
 	void bind(void) const override   { glBindBuffer(_target, _objectId); }
 	void unbind(void) const override { glBindBuffer(_target, 0); }
 };
+
+template<>
+class Buffer<GLobjectType::DSA> : public GLobject
+{
+}
 #endif
