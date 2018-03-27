@@ -3,7 +3,7 @@ This library simplifies the opengl program development process by allow users ea
 
 At the moment, all code is provided in the corresponding header file for simplicity. In the future code will be moved into their own source files.
 </br>
-#### Simple Rectangle Example
+#### Simple Rectangle Example (Utilizing Bind-Target)
 ```c++
 void drawRectangle(Rect rectangle, Color color)
 {
@@ -40,6 +40,42 @@ void drawRectangle(Rect rectangle, Color color)
   VAO.unbind();
   simpleRect.unuseProgram();
 }
+```
+#### Simple Rectangle Example (Utilizing Direct State Access)
+```c++
+void drawRectangle(Rect rectangle, Color color)
+{
+  static Program simpleRect("Primitive.vert", "Primitive.frag");
+  
+  GLfloat vertexData[] = {
+  	rect.x, rect.y, 0.0f,
+	rect.x, rect.y + rect.h, 0.0f,
+	rect.x + rect.w, rect.y + rect.h, 0.0f,
+	rect.x + rect.w, rect.y, 0.0f
+  };
+
+  const GLuint indexData[] = {
+	0, 1, 3,
+	1, 2, 3
+  };
+
+  VertexArray<GLobjectType::DSA> VAO;
+
+  Buffer<GLobjectType::DSA> VBO;
+  VBO.bufferData(vertexData, 12, GL_STATIC_DRAW);
+
+  Buffer<GLobjectType::DSA> EBO;
+  EBO.bufferData(indexData, 6, GL_STATIC_DRAW);
+
+  VAO.bindBuffer(VBO, GL_ARRAY_BUFFER);
+  VAO.bindBuffer(EBO, GL_ELEMENT_ARRAY_BUFFER);
+
+  Attribute attr(0, 3, GL_FLOAT, GL_FALSE, 0);
+  VAO.bindAttribute(0, attr);
+
+  simpleRect.use();
+  VAO.drawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  simpleRect.unuse();
 ```
 
 # Requirements
