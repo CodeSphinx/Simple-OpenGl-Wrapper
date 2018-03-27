@@ -73,9 +73,13 @@ void drawRectangle(Rect rectangle, Color color)
   Attribute attr(0, 3, GL_FLOAT, GL_FALSE, 0);
   VAO.bindAttribute(0, attr);
 
-  simpleRect.use();
+  simpleRect.useProgram();
+  GLint loc = glGetUniformLocation(simpleRect.getId(), "color");
+  glUniform4f(loc, (GLfloat)(color.r) / 255, (GLfloat)(color.g) / 255, (GLfloat)(color.b) / 255, (GLfloat)(color.a) / 255);
+
   VAO.drawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   simpleRect.unuse();
+}
 ```
 
 # Requirements
