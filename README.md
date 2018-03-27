@@ -78,7 +78,7 @@ void drawRectangle(Rect rectangle, Color color)
   glUniform4f(loc, (GLfloat)(color.r) / 255, (GLfloat)(color.g) / 255, (GLfloat)(color.b) / 255, (GLfloat)(color.a) / 255);
 
   VAO.drawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-  simpleRect.unuse();
+  simpleRect.unuseProgram();
 }
 ```
 
