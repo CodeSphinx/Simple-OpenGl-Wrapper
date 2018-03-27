@@ -30,14 +30,6 @@ struct Attribute
 	{}
 };
 
-/*
-	VERTEX ARRAY OBJECT
-
-- Only need to be binded when altering contents or drawn.
-- 1 VAO is active at a time, when bound, others unbind
-- Stores Element buffers and attr pointers, not vbo
-*/
-
 template <GLobjectType Type>
 class VertexArray;
 
@@ -62,21 +54,6 @@ public:
 		glEnableVertexAttribArray(attr._index);
 		glBindBuffer(vertexBuffer.getTarget(), 0);
 		glBindVertexArray(0);
-
-		/*
-		GLuint boundVAO = 0, boundVBO = 0;
-		glGetIntegerv(GL_VERTEX_ARRAY_BINDING, (GLint*)&boundVAO);
-		glGetIntegerv(GL_ARRAY_BUFFER_BINDING, (GLint*)&boundVBO);
-
-		glBindVertexArray(_objectId);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer.getId());
-
-		glVertexAttribPointer(attr._index, attr._size, attr._type, attr._normalized, attr._stride, attr._pointer);
-		glEnableVertexAttribArray(attr._index);
-
-		glBindBuffer(GL_ARRAY_BUFFER, boundVBO);
-		glBindVertexArray(boundVAO);
-		*/
 	}
 	void bindAttributes(const Buffer<GLobjectType::TARGET> & vertexBuffer, GLuint count, ...)
 	{
