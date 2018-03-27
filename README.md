@@ -3,6 +3,10 @@ This library simplifies the opengl program development process by allow users ea
 
 At the moment, all code is provided in the corresponding header file for simplicity. In the future code will be moved into their own source files.
 
+```c++
+//Example
+```
+
 # Requirements
 - GLEW (At the moment)
 
