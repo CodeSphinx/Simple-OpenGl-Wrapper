@@ -3,8 +3,9 @@ This library simplifies the opengl program development process by allow users ea
 
 At the moment, all code is provided in the corresponding header file for simplicity. In the future code will be moved into their own source files.
 
+Simple Rectangle Example
 ```c++
-//Example
+//INSERT EXAMPLE HERE
 ```
 
 # Requirements
