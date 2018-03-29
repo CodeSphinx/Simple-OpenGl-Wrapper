@@ -1,6 +1,4 @@
-#pragma once //Ignored on Linux/OSX
-#ifndef BUFFER_H
-#define BUFFER_H
+#pragma once
 #include "GLobject.h"
 #include <GL\glew.h>
 
@@ -37,5 +35,19 @@ public:
 template<>
 class Buffer<GLobjectType::DSA> : public GLobject
 {
-}
-#endif
+private:
+	Buffer(const Buffer&);
+
+public:
+	Buffer() : GLobject() { glCreateBuffers(1, &_objectId); }
+	~Buffer() { glDeleteBuffers(1, &_objectId); }
+
+	template <typename T>
+	void bufferData(T * data, GLuint size, GLenum usage)
+	{
+		glNamedBufferData(_objectId, sizeof(T) * size, data, usage);
+	}
+
+	void bind(void) const override {}
+	void unbind(void) const override {}
+};
