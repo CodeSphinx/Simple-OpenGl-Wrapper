@@ -25,9 +25,7 @@ struct Attribute
 		_index(index), _size(size), _type(type), _normalized(normalized), _stride(stride), _pointer(pointer)
 	{}
 
-	Attribute(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLuint offset) :
-		_index(index), _size(size), _type(type), _normalized(normalized), _stride(stride), _offset(offset)
-	{}
+	Attribute(GLuint index, GLint size, GLenum type, GLboolean normalized, GLuint offset) : _index(index), _size(size), _type(type), _normalized(normalized), _stride(0), _offset(offset) {}
 };
 
 template <GLobjectType Type>
@@ -116,7 +114,6 @@ public:
 		glVertexArrayAttribFormat(_objectId, attr._index, attr._size, attr._type, attr._normalized, attr._offset);
 		glVertexArrayAttribBinding(_objectId, attr._index, bindingIndex);
 	}
-
 	void bindAttributes(GLuint bindingIndex, GLuint count, ...)
 	{
 		va_list args;
@@ -136,5 +133,27 @@ public:
 			glVertexArrayAttribBinding(_objectId, attr._index, bindingIndex);
 		}
 		va_end(args);
+	}
+
+	void bindVertexBuffer(const Buffer<GLobjectType::DSA> & buffer, GLuint bindingIndex, GLintptr offset, GLsizei stride)
+	{
+		glVertexArrayVertexBuffer(_objectId, bindingIndex, buffer.getId(), offset, stride);
+	}
+	void bindElementBuffer(const Buffer<GLobjectType::DSA> & buffer)
+	{
+		glVertexArrayElementBuffer(_objectId, buffer.getId());
+	}
+
+	void drawElements(GLenum mode, GLsizei count, GLenum type, const void * indicies) const
+	{
+		glBindVertexArray(_objectId);
+		glDrawElements(mode, count, type, indicies);
+		glBindVertexArray(0);
+	}
+	void drawArrays(GLenum mode, GLint first, GLsizei count) const
+	{
+		glBindVertexArray(_objectId);
+		glDrawArrays(mode, first, count);
+		glBindVertexArray(0);
 	}
 };
