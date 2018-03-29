@@ -88,13 +88,6 @@ public:
 		for (auto shader : shaders)
 			shaderId.push_back(this->loadShader(shader._shaderSource, shader._shaderType));
 
-		/*
-		GLuint * shaderId = new GLuint[shaders.size()];
-		for (std::initializer_list<Shader>::iterator it = shaders.begin(), int index = 0; it != shaders.end(); it++, index++)
-		{
-		}
-		*/
-
 		glLinkProgram(_objectId);
 
 		for (GLuint id : shaderId)
@@ -111,8 +104,6 @@ public:
 
 	GLuint getUniformLocation(const char * uniformName) const
 	{
-		//Get uniform attribute index (We can use this later to update the uniform variable)
-		//Finding uniform location does not require program to be active.
 		return glGetUniformLocation(_objectId, uniformName);
 	}
 
