@@ -3,6 +3,12 @@ This library simplifies the opengl program development process by allow users ea
 
 At the moment, all code is provided in the corresponding header file for simplicity. In the future code will be moved into their own source files.
 </br>
+
+###### Upcoming Features...
+	- Primitive Shapes N-Sided Polygons, Circles, etc...
+	- Updated Shader Program Objects
+	- ...
+
 #### Simple Rectangle Example
 ```c++
 extern void drawRectXDSA(Rect rect, Color color, GLfloat rotation = 0.0f, GLfloat scale = 1.0f)
