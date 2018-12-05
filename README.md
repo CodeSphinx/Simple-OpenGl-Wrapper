@@ -1,4 +1,4 @@
-# Simple-OpenGl-Wrapper
+# Simple-OpenGl-Wrapper (WIP)
 This library simplifies the opengl program development process by allow users easily access and manipulate OpenGL objects through class wrappers.
 
 At the moment, all code is provided in the corresponding header file for simplicity. In the future code will be moved into their own source files.
